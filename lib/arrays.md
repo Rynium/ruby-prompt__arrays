@@ -19,14 +19,14 @@ Examples of arrays could be any mix of numbers, strings, objects, or even arrays
 
 We can retrieve elements in an array in the same way that we retrieve elements in a string.
     array = [ 1,2,3,4,5,6,7,8,9]
-    puts array[8]     # this would give us the number "9".
+    puts array[8]     # this would give us the number "9", which is our 9th element. If we wanted to find the 8th element, we could use array[7].
 If we try to retreive a number that doesn't exist in an array. We will get a "nil" value. 
 
 
 
 # The previous question asks about finding, for example, the 6th element in an Array. Is it possible to find the **-6th** (Notice the negative symbol!) element in an Array? What does that even mean?
 
-Negative numbers can be used to retrieve data from an array.
+Negative numbers can be used to retrieve data from an array. Say we wanted to retrieve the last value of our array, we could use array[-1] to access this. If we wanted to access the second to last, we could do so with array[-2]. This patter contunes on up until the index of array[-array.length], which would access the same item as array[0].
     array = [ 1,2,3,4,5,6,7,8,9]
     puts array[-9]    # give us the number "1". Any index value below -9 would return a "nil" value.
 
@@ -36,7 +36,7 @@ Negative numbers can be used to retrieve data from an array.
 
 A loop could be used to iterate through every index in an array. For instance if we wanted to double ever number in an array, we could use the following loop.
    array = [ 1,2,3,4,5,6,7,8,9]
-   array.each {|n| puts n*2}   #This puts each number multiplied by two onto the screen with each being on a different line.
+   array.each {|n| puts n*2}   #This puts each number multiplied by two onto the screen with each being on a different line. It does not alter array in any way, it just simply puts the value multiplied by two to the screen!
 
 
 
@@ -61,8 +61,15 @@ Elements can be removed from any index using the ".delete_at(index)" method.
 
   Using the follow code would replace the item at index 1 of this array, replacing "Fiona" with "Florence" 
          names[1].replace("Florence")
-
-
+  
+  If we don't know whether "Fiona' exists or not, we can use our ".map"(because this returns a new array vs ".each" wichi returns the oringal array) to iterate through each value to check "if" it is equal to "Fiona", and then replacing it with "Florence if that is true:
+        array.map! do |x|
+            if x == 'Fiona'
+                'Florence'
+            else
+                x
+            end
+        end
 
 # What do the methods `push`, `pop`, `shift`, and `unshift` do?
     "push" will add an item on to the end of an array.  
@@ -92,3 +99,6 @@ To take a string "Sumeet Jain" and return the names split up, we could use the c
 To take a string "Sumeet Jain" and return the letters split up, we could do the following.
     name = "Sumeet Jain"
     name_array = name.split("")    
+To take ["S","u","m","e","e","t"] and turn it into a string "Sumeet" we could use the ".join(separator)" method.
+    array =  ["S","u","m","e","e","t"]
+    string = array.join("")  # this sets string equal to "Sumeet"
